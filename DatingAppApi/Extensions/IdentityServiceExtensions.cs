@@ -8,6 +8,7 @@ namespace DatingAppApi.Extensions
     {
         public static IServiceCollection AddIdentityServiceExtensions(this IServiceCollection services, IConfiguration config)
         {
+            services.AddAuthorization();
             services.AddCors();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
             {
