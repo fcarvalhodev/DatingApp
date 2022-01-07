@@ -4,8 +4,10 @@ using DatingAppApi.Entities;
 using DatingAppApi.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+
 
 namespace DatingAppApi.Controllers
 {
@@ -43,6 +45,8 @@ namespace DatingAppApi.Controllers
         }
 
         [HttpPost("login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             var user = await _context.Users
@@ -55,7 +59,7 @@ namespace DatingAppApi.Controllers
 
             for (int i = 0; i < computedHash.Length; i++)
             {
-                if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid password");
+                if (computedHash[i] != user.PasswordHash[i]) return Unauthorized();
             }
 
             return new UserDto { Username = user.UserName, Token = _tokenService.CreateToken(user) };
