@@ -1,4 +1,5 @@
 ﻿using DatingAppApi.Data;
+using DatingAppApi.Helpers;
 using DatingAppApi.Interfaces;
 using DatingAppApi.Services;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,8 @@ namespace DatingAppApi.Extensions
         {
             services.AddControllers();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(opt =>
             {
                 opt.UseSqlite(config.GetConnectionString("DefaultConnection"));

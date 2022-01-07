@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatingAppApi", "DatingAppApi\DatingAppApi.csproj", "{A006A63F-CFFC-4E74-8ED0-D3BCA3C0C184}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatingAppApi", "DatingAppApi\DatingAppApi.csproj", "{A006A63F-CFFC-4E74-8ED0-D3BCA3C0C184}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{62C05A81-818B-46B3-BDBE-94B4AACAA67E}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
