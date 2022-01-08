@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DatingAppApi.Controllers
 {
+    //TODO: Refactor the automapper to do the map in the data layer.
     [Authorize]
     public class UsersController : BaseApiController
     {
@@ -24,7 +25,7 @@ namespace DatingAppApi.Controllers
             return Ok(_mapper.Map<IEnumerable<MemberDto>>(await _userRepository.GetUsersAsync()));
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{username}")]
         public async Task<ActionResult<MemberDto>> GetUser(string username)
         {
             return _mapper.Map<MemberDto>(await _userRepository.GetUserByUsernameAsync(username.ToLower()));

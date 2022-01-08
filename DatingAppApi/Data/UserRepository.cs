@@ -27,7 +27,7 @@ namespace DatingAppApi.Data
         {
             return await _context.Users
                 .Include(x => x.Photos)
-                .SingleOrDefaultAsync(x => x.UserName.Equals(username, StringComparison.Ordinal));
+                .SingleOrDefaultAsync(x => x.UserName.ToLower().Equals(username));
         }
 
         public async Task<bool> SaveAllAsync()
