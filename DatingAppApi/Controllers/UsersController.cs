@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using DatingAppApi.DTOs;
+using DatingAppApi.Entities;
 using DatingAppApi.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace DatingAppApi.Controllers
 {
@@ -31,5 +33,16 @@ namespace DatingAppApi.Controllers
             return _mapper.Map<MemberDto>(await _userRepository.GetUserByUsernameAsync(username.ToLower()));
         }
 
+        [HttpPut]
+        public async Task<ActionResult> Update(MemberUpdateDto memberUpdateDto)
+        {
+            var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var user = await _userRepository.GetUserByUsernameAsync(username);
+
+            _mapper.Map(memberUpdateDto, user);
+            _userRepository.Update(user);
+            if (await _userRepository.SaveAllAsync()) return NoContent();
+            return BadRequest("Failed to update user");
+        }
     }
 }

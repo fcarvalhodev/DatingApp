@@ -1,4 +1,5 @@
-﻿using DatingAppApi.Entities;
+﻿using DatingAppApi.DTOs;
+using DatingAppApi.Entities;
 
 namespace DatingAppApi.Interfaces
 {

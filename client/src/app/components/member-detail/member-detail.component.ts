@@ -12,24 +12,13 @@ import { MembersService } from 'src/app/services/members.service';
 
 export class MemberDetailComponent implements OnInit {
   member: Member;
+  slides: { image: string; text?: string }[] = [];
 
   constructor(private memberService: MembersService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.loadMember();
   }
-
-  // getImages(): any[] {
-  //   const imageUrls = [];
-  //   this.member.photos.forEach(photo => {
-  //     imageUrls.push({
-  //       small: photo?.url,
-  //       medium: photo?.url,
-  //       big: photo?.url
-  //     })
-  //   });
-  //   return imageUrls;
-  // }
 
   loadMember() {
     this.memberService.getMember(this.route.snapshot.paramMap.get('username')).subscribe(member => {
